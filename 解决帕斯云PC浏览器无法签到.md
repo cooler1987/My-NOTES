@@ -7,7 +7,7 @@
 ```
 function check() {
     var url = window.location.href;
-    var uid = xxx;  //这里的UID替换成自己的UID，在主页可以看到自己的UID
+    var uid = xxx;  //这里的UID换成自己的UID，页面原代码中可以查到，我这里的是394
     $.ajax({
         url: url
         ,type: 'post'
