@@ -129,21 +129,10 @@ rm -rf "$(basename ${FILE_MAP[web]})" "$(basename ${FILE_MAP[npm]})"
 run
 
 get_ip() {
-  ip=$(curl -s --max-time 10 ipv4.ip.sb)
-  if [ -n "$ip" ]; then
-      ip=$( [[ "$HOSTNAME" =~ s[0-9]\.serv00\.com ]] && echo "${HOSTNAME/s/cache}" || echo "$HOSTNAME" )
-  else
-      accessible=false
-      response=$(ping -c 3 -W 3 www.baidu.com)
-      if echo "$response" | grep -q "time="; then
-          accessible=true
-      fi
-      if [ "$accessible" = false ]; then
-          ip=$( [[ "$HOSTNAME" =~ s[0-9]\.serv00\.com ]] && echo "${HOSTNAME/s/cache}" || echo "$ip" )
-      fi
-  fi
-  echo "$ip"
+    ip=$( [[ "$HOSTNAME" =~ s[0-9]\.serv00\.com ]] && echo "${HOSTNAME/s/cache}" || echo "$HOSTNAME" )
+    echo "$ip"
 }
+
 
 HOST_IP=$(get_ip)
 
