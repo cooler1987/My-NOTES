@@ -129,9 +129,10 @@ rm -rf "$(basename ${FILE_MAP[web]})" "$(basename ${FILE_MAP[npm]})"
 run
 
 get_ip() {
-    ip=$( [[ "$HOSTNAME" =~ s[0-9]\.serv00\.com ]] && echo "${HOSTNAME/s/cache}" || echo "$HOSTNAME" )
+    ip=$( [[ "$HOSTNAME" =~ s[0-9]\.serv00\.com ]] && echo "${HOSTNAME/s/cache}" || echo "${HOSTNAME/s/cache}" )
     echo "$ip"
 }
+
 
 
 HOST_IP=$(get_ip)
