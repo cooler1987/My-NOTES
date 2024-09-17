@@ -379,7 +379,7 @@ generate_config() {
     {
        "tag": "hysteria-in",
        "type": "hysteria2",
-       "listen": "::",
+       "listen": "128.204.223.112",
        "listen_port": $hy2_port,
        "users": [
          {
@@ -399,7 +399,7 @@ generate_config() {
     {
       "tag": "vmess-ws-in",
       "type": "vmess",
-      "listen": "::",
+      "listen": "128.204.223.112",
       "listen_port": $vmess_port,
       "users": [
       {
@@ -415,7 +415,7 @@ generate_config() {
     {
       "tag": "tuic-in",
       "type": "tuic",
-      "listen": "::",
+      "listen": "128.204.223.112",
       "listen_port": $tuic_port,
       "users": [
         {
