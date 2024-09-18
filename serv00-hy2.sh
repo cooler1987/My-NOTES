@@ -78,7 +78,7 @@ openssl req -x509 -nodes -newkey ec:<(openssl ecparam -name prime256v1) -keyout 
 
 # Generate configuration file
 cat << EOF > config.yaml
-listen:$HOST_IP :$PORT
+listen: :$PORT
 
 tls:
   cert: server.crt
