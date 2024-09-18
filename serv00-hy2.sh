@@ -141,7 +141,7 @@ ISP=$(curl -s https://speed.cloudflare.com/meta | awk -F\" '{print $26"-"$18}' |
 
 echo -e "\e[1;32mHysteria2安装成功\033[0m\n"
 echo -e "\e[1;33mV2rayN 或 Nekobox、小火箭等直接导入,跳过证书验证需设置为true\033[0m\n"
-echo -e "\e[1;32mhysteria2://$UUID@$HOST_IP:$PORT/?sni=www.bing.com&alpn=h3&insecure=1#$(hostname)$USERNAME\033[0m\n"
+echo -e "\e[1;32mhysteria2://$UUID@$HOST_IP:$PORT/?sni=www.bing.com&alpn=h3&insecure=1#$(hostname)-USERNAME\033[0m\n"
 echo -e "\e[1;33mSurge\033[0m"
 echo -e "\e[1;32m$ISP = hysteria2, $HOST_IP, $PORT, password = $UUID, skip-cert-verify=true, sni=www.bing.com\033[0m\n"
 echo -e "\e[1;33mClash\033[0m"
