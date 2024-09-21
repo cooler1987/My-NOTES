@@ -331,6 +331,18 @@ EOF
 # Generating Configuration Files
 generate_config() {
 
+  # 获取服务器的主机名，例如：s1.serv00.com
+  HOSTNAME=$(hostname)
+
+  # 将主机名中的 "s" 替换为 "cache"，例如：s1.serv00.com -> cache1.serv00.com
+  CACHE_HOSTNAME=${HOSTNAME/s/cache}
+
+  # 通过域名解析获取 cache(0-9).serv00.com 对应的真实IP
+  cache_IP=$(dig +short $CACHE_HOSTNAME | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | head -n 1)
+
+  # 输出 cache_IP 作为检查
+  echo "Resolved SERVER_IP: $cache_IP"
+  
   openssl ecparam -genkey -name prime256v1 -out "private.key"
   openssl req -new -x509 -days 3650 -key "private.key" -out "cert.pem" -subj "/CN=$USERNAME.serv00.net"
 
@@ -379,7 +391,7 @@ generate_config() {
     {
        "tag": "hysteria-in",
        "type": "hysteria2",
-       "listen": "$ip",
+       "listen": "$cache_IP",
        "listen_port": $hy2_port,
        "users": [
          {
@@ -399,7 +411,7 @@ generate_config() {
     {
       "tag": "vmess-ws-in",
       "type": "vmess",
-      "listen": "$ip",
+      "listen": "$cache_IP",
       "listen_port": $vmess_port,
       "users": [
       {
@@ -415,7 +427,7 @@ generate_config() {
     {
       "tag": "tuic-in",
       "type": "tuic",
-      "listen": "$ip",
+      "listen": "$cache_IP",
       "listen_port": $tuic_port,
       "users": [
         {
