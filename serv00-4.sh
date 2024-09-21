@@ -328,12 +328,6 @@ EOF
   fi
 }
 
-# 改IP为服务器第三个IP，cachexx.serv00.com，监听IP相同，故此设置不再适用于CT8
-get_ip() {
-    ip=$( [[ "$HOSTNAME" =~ s[0-9]\.serv00\.com ]] && echo "${HOSTNAME/s/cache}" || echo "${HOSTNAME/s/cache}" )
-    echo "$ip"
-}
-
 # Generating Configuration Files
 generate_config() {
 
@@ -621,6 +615,7 @@ cat > app_map.json << EOF
 EOF
 }
 
+# 获取IP，改为cachexx为前缀
 get_ip() {
     ip=$( [[ "$HOSTNAME" =~ s[0-9]\.serv00\.com ]] && echo "${HOSTNAME/s/cache}" || echo "${HOSTNAME/s/cache}" )
     echo "$ip"
