@@ -341,7 +341,7 @@ generate_config() {
   cache_IP=$(dig +short $CACHE_HOSTNAME | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | head -n 1)
 
   # 输出 cache_IP 作为检查
-  echo "Resolved SERVER_IP: $cache_IP"
+  echo "监控IP地址使用Cache_IP: $cache_IP"
   
   openssl ecparam -genkey -name prime256v1 -out "private.key"
   openssl req -new -x509 -days 3650 -key "private.key" -out "cert.pem" -subj "/CN=$USERNAME.serv00.net"
