@@ -328,6 +328,12 @@ EOF
   fi
 }
 
+# 改IP为服务器第三个IP，cachexx.serv00.com，监听IP相同，故此设置不再适用于CT8
+get_ip() {
+    ip=$( [[ "$HOSTNAME" =~ s[0-9]\.serv00\.com ]] && echo "${HOSTNAME/s/cache}" || echo "${HOSTNAME/s/cache}" )
+    echo "$ip"
+}
+
 # Generating Configuration Files
 generate_config() {
 
@@ -379,7 +385,7 @@ generate_config() {
     {
        "tag": "hysteria-in",
        "type": "hysteria2",
-       "listen": "128.204.223.112",
+       "listen": "$ip",
        "listen_port": $hy2_port,
        "users": [
          {
@@ -399,7 +405,7 @@ generate_config() {
     {
       "tag": "vmess-ws-in",
       "type": "vmess",
-      "listen": "128.204.223.112",
+      "listen": "$ip",
       "listen_port": $vmess_port,
       "users": [
       {
@@ -415,7 +421,7 @@ generate_config() {
     {
       "tag": "tuic-in",
       "type": "tuic",
-      "listen": "128.204.223.112",
+      "listen": "$ip",
       "listen_port": $tuic_port,
       "users": [
         {
@@ -616,15 +622,8 @@ EOF
 }
 
 get_ip() {
-ip=$(curl -s --max-time 2 ipv4.ip.sb)
-if [ -z "$ip" ]; then
-    if [[ "$HOSTNAME" =~ cache[0-9]\.serv00\.com ]]; then
-        ip=${HOSTNAME/s/web}
-    else
-        ip="$HOSTNAME"
-    fi
-fi
-echo $ip
+    ip=$( [[ "$HOSTNAME" =~ s[0-9]\.serv00\.com ]] && echo "${HOSTNAME/s/cache}" || echo "${HOSTNAME/s/cache}" )
+    echo "$ip"
 }
 
 get_argodomain() {
