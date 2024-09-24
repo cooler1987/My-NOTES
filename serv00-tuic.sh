@@ -15,7 +15,7 @@ ps aux | grep $(whoami) | grep -v "sshd\|bash\|grep" | awk '{print $2}' | xargs 
 
 # Download Dependency Files
 clear
-echo -e "\e[1;35m正在安装中,请稍等...\e[0m"
+echo -e "\e[1;35mTUIC单协议版正在安装中,请稍等...\e[0m"
 ARCH=$(uname -m) && DOWNLOAD_DIR="." && mkdir -p "$DOWNLOAD_DIR" && FILE_INFO=()
 if [ "$ARCH" == "arm" ] || [ "$ARCH" == "arm64" ] || [ "$ARCH" == "aarch64" ]; then
     FILE_INFO=("https://github.com/etjec4/tuic/releases/download/tuic-server-1.0.0/tuic-server-1.0.0-x86_64-unknown-freebsd.sha256sum web" "https://github.com/eooce/test/releases/download/ARM/swith npm")
@@ -150,8 +150,8 @@ get_ip() {
 HOST_IP=$(get_ip)
 echo -e "\e[1;32m本机IP: $HOST_IP\033[0m"
 ISP=$(curl -s https://speed.cloudflare.com/meta | awk -F\" '{print $26"-"$18}' | sed -e 's/ /_/g')
-echo -e "\e[1;32mTuic和Socks5安装成功\033[0m\n"
-echo -e "\e[1;33mTuic在V2rayN 或 Nekobox，跳过证书验证需设置为true，不要把socks5作为节点添加到代理软件里！\033[0m\n"
+echo -e "\e[1;32mTuic单协议版安装成功\033[0m\n"
+echo -e "\e[1;33mTuic在V2rayN 或 Nekobox，跳过证书验证需设置为true。\033[0m\n"
 echo -e "\e[1;32mtuic://$UUID:$PASSWORD@$HOST_IP:$PORT?congestion_control=bbr&alpn=h3&sni=www.bing.com&udp_relay_mode=native&allow_insecure=1#$ISP\e[0m\n"
 echo -e "\e[1;33mClash\033[0m"
 cat << EOF
