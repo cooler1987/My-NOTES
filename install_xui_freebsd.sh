@@ -30,7 +30,7 @@ echo "arch: $(arch)"
 install_base() {
     case "${release}" in
     freebsd)
-        # °²×°ÒÀÀµµ½ÓÃ»§Ä¿Â¼
+        # å®‰è£…ä¾èµ–åˆ°ç”¨æˆ·ç›®å½•
         mkdir -p ~/my_bin
         export PATH=~/my_bin:$PATH
         if ! command -v wget &> /dev/null; then
@@ -111,7 +111,7 @@ install_x-ui() {
     rm x-ui-linux-$(arch).tar.gz -f
     chmod +x ~/x-ui/x-ui
 
-    # Æô¶¯ x-ui
+    # å¯åŠ¨ x-ui
     ~/x-ui/x-ui start
     config_after_install
 
